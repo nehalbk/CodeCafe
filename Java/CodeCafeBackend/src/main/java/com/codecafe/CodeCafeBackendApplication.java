@@ -1,4 +1,4 @@
-package com.codecafe.backend;
+package com.codecafe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

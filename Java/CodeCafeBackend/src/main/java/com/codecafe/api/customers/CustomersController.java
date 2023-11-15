@@ -1,4 +1,4 @@
-package com.codecafe.backend;
+package com.codecafe.api.customers;
 
 import java.util.List;
 
@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class orderController {
+public class CustomersController {
 	@Autowired
-	ordersRepo repo;
+	CustomersRepo repo;
 	
 	@CrossOrigin(origins="http://localhost:8080")
-	@GetMapping(value="/orders",produces = { "application/json" })
+	@GetMapping(value="/customers",produces = { "application/json" })
 	@ResponseBody
-	public List<orders> getOrders(){
+	public List<Customers> getOrders(){
 		return repo.findAll();
 	}
 	
 	@CrossOrigin(origins="http://localhost:8080")
-	@GetMapping(value="/orders/{orderid}",produces = { "application/json" })
+	@GetMapping(value="/customers/{customerid}",produces = { "application/json" })
 	@ResponseBody
-	public List<orders> getOrder(@PathVariable int orderid){
-		return repo.findByordersId(orderid);
+	public List<Customers> getOrder(@PathVariable int customerid){
+		return repo.findBycustomersId(customerid);
 	}
 
 }

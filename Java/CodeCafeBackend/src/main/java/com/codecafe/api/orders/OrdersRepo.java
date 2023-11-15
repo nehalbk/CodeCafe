@@ -1,4 +1,4 @@
-package com.codecafe.backend;
+package com.codecafe.api.orders;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public interface ordersRepo extends JpaRepository<orders,Integer>{
+public interface OrdersRepo extends JpaRepository<Orders,Integer>{
 	
-	List<orders> findByordersId(int orderid);
+	List<Orders> findByordersId(int orderid);
 }

@@ -1,11 +1,11 @@
-package com.codecafe.backend;
+package com.codecafe.api.orders;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class orders {
+public class Orders {
 	
 	@Id
 	@Column(name = "ORDROUID")
@@ -18,11 +18,11 @@ public class orders {
 	private Integer ORDRTOTL;
 	private boolean ORDRDELV;
 	
-	public orders() {
+	public Orders() {
 		
 	}
 	
-	public orders(Integer oRDROUID, Integer oRDRCUID, Integer oRDRIUID, Integer oRDRQNTY, Integer oRDRPRIC,
+	public Orders(Integer oRDROUID, Integer oRDRCUID, Integer oRDRIUID, Integer oRDRQNTY, Integer oRDRPRIC,
 			Integer oRDRTTAX, Integer oRDRTOTL, boolean oRDRDELV) {
 		super();
 		ordersId = oRDROUID;
