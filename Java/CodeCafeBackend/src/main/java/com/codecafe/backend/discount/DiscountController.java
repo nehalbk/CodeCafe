@@ -1,6 +1,11 @@
 package com.codecafe.backend.discount;
 
 import com.codecafe.api.orders.Orders;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,18 +17,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 public class DiscountController {
 	
+	@Autowired
+	CalculateDiscount disc;
+	
 	@CrossOrigin(origins="http://localhost:8080")
 	@PostMapping(value="/discount",consumes="application/json")
 	@ResponseBody
-	public double getDiscount(@RequestBody Orders order) {
-		if(order.getORDRTOTL()>300)
-			return 0.10;
-		else if(order.getORDRTOTL()>200)
-			return 0.05;
-		else
-			return 0;
+	public ResponseEntity<Map<String,String>> getDiscount(@RequestBody Orders order) throws Exception {
+		return disc.getDiscount(order);
+	
 	}
 	
+//	public double getDiscount(@RequestBody int order) {
+//		
+//		return disc.getDiscount(order);
+//	
+//	}
+//	
 	@CrossOrigin(origins="http://localhost:8080")
 	@GetMapping(value="/discount",produces="application/json")
 	@ResponseBody
