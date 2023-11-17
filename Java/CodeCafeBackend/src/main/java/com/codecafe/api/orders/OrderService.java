@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.codecafe.exceptions.SpringExceptionHandler;
 
 @Service
-public class Orderervice {
+public class OrderService {
 	
 	@Autowired
 	SpringExceptionHandler excp;

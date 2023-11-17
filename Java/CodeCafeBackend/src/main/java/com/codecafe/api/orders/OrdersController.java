@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrdersController {
 	
 	@Autowired
-	Orderervice orderService;
+	OrderService orderService;
+	
 	
 	@GetMapping(value="/orders",produces = { "application/json" })
 	@ResponseBody
