@@ -1,4 +1,4 @@
-package com.codecafe.backend.discount;
+package com.codecafe.backend.refund;
 
 import com.codecafe.api.orders.Orders;
 
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 
-public class DiscountController {
+public class RefundController {
 	
 	@Autowired
-	HandleDiscount disc;
+	CalculateRefund disc;
 	
 	@CrossOrigin(origins="http://localhost:8080")
-	@PostMapping(value="/discount",consumes="application/json")
+	@PostMapping(value="/refund",consumes="application/json")
 	@ResponseBody
 	public ResponseEntity<Map<String,String>> getDiscount(@RequestBody Orders order) throws Exception {
-		return disc.handleDiscount(order);
+		return disc.getRefund(order);
 	
 	}
 	
@@ -35,9 +35,9 @@ public class DiscountController {
 //	}
 //	
 	@CrossOrigin(origins="http://localhost:8080")
-	@GetMapping(value="/discount",produces="application/json")
+	@GetMapping(value="/refund",produces="application/json")
 	@ResponseBody
 	public String geta() {
-		return "Hello!, Ready for a  surprise?";
+		return "Hello!, Sorry for the inconvinience!";
 	}
 }

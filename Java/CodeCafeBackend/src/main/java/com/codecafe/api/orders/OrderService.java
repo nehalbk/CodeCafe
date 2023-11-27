@@ -8,6 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 
+import com.codecafe.backend.discount.HandleDiscount;
+import com.codecafe.backend.saveOrder.HandleSaveOrder;
+import com.codecafe.backend.tax.HandleTax;
+import com.codecafe.backend.total.HandleTotal;
 import com.codecafe.exceptions.SpringExceptionHandler;
 
 @Service
@@ -18,8 +22,34 @@ public class OrderService {
 	@Autowired
 	private WebRequest webRequest;
 	@Autowired
-	OrdersRepo repo;
+	private OrdersRepo repo;
+	@Autowired
+	private HandleDiscount disc;
+	@Autowired
+	private HandleTotal total;
+	@Autowired
+	private HandleTax tax;
+	@Autowired
+	private HandleSaveOrder save;
 	
+	public ResponseEntity<Orders> saveOrder(Orders order) throws Exception {
+		try{
+			System.out.println(order);
+			save.handleSaveOrder(order);
+			disc.handleDiscount(order);
+			tax.handleTax(order);
+			total.handleTotal(order);
+			save.handleSaveOrder(order);
+			
+			return new ResponseEntity<>(order,HttpStatus.OK);
+		}catch(Exception E) {
+			excp.handleAllException(E,webRequest);
+			
+			return  new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+		}
+		
+
+	}
 	
 	public ResponseEntity<List<Orders>> getallorders() throws Exception {
 		try{
