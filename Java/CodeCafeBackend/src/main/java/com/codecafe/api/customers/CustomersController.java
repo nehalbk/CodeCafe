@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,11 @@ public class CustomersController {
 	@ResponseBody
 	public ResponseEntity<List<Customers>> getOrder(@PathVariable int customerid) throws Exception{
 		return customerService.getCustomersById(customerid);
+	}
+	
+	@PostMapping(value="/customers",consumes= {"application/json"})
+	public ResponseEntity<Customers> putCustomer(@RequestBody Customers customer) throws Exception {
+		return customerService.putCustomer(customer);
 	}
 
 }

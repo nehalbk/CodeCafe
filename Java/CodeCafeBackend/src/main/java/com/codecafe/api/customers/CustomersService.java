@@ -53,4 +53,19 @@ public class CustomersService {
 			return  new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 		}
 	}	
+	
+	public ResponseEntity<Customers> putCustomer(Customers customer) throws Exception{
+		
+		try{	
+
+			System.out.println(customer);
+				repo.save(customer);
+				return new ResponseEntity<>(customer,HttpStatus.OK);
+			
+		}catch(Exception E) {
+			excp.handleAllException(E,webRequest);
+			
+			return  new ResponseEntity<>(customer,HttpStatus.BAD_REQUEST);
+		}
+	}
 }

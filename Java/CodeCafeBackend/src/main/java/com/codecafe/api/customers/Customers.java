@@ -2,6 +2,8 @@ package com.codecafe.api.customers;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
@@ -9,6 +11,7 @@ public class Customers {
 	
 	@Id
 	@Column(name = "CUSTCUID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer customersId;
 	private String CUSTNAME;
 	private String CUSTPHNO;

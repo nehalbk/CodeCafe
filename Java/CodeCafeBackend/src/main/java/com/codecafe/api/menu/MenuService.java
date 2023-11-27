@@ -52,6 +52,15 @@ public class MenuService {
 		}
 	}
 	
-	
+	public ResponseEntity<Menu> addItem(Menu menu) throws Exception{
+		try {
+			repo.save(menu);
+			return new ResponseEntity<Menu>(menu,HttpStatus.CREATED);
+		}catch(Exception E) {
+			excp.handleAllException(E,webRequest);
+			return new ResponseEntity<Menu>(menu,HttpStatus.BAD_REQUEST);
+		}
+		
+	}
 	
 }
