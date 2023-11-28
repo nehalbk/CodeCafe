@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,5 +33,10 @@ public class MenuController {
 	@PostMapping(value="/menu",consumes="application/json")
 	public ResponseEntity<Menu> addItem(@RequestBody Menu menu) throws Exception{
 		return menuService.addItem(menu);
+	}
+	
+	@DeleteMapping(value="/menu")
+	public ResponseEntity<Object> deleteMenuItem(@RequestBody Integer itemid) throws Exception {
+		return menuService.deleteMenuItem(itemid);
 	}
 }

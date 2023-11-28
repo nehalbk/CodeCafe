@@ -63,4 +63,23 @@ public class MenuService {
 		
 	}
 	
+	public ResponseEntity<Object> deleteMenuItem(Integer itemid) throws Exception{
+			
+			try{	
+				List<Menu> returnedCustomers =repo.findBymenuId(itemid);
+				if(returnedCustomers.isEmpty()) {
+					throw new Exception("No customers found!");
+				}else {
+					repo.deleteById(itemid);
+					return new ResponseEntity<Object>("Item deleted Successully!",HttpStatus.OK);
+				
+				}
+				
+			}catch(Exception E) {
+				excp.handleAllException(E,webRequest);
+				
+				return  new ResponseEntity<Object>("Error in deleting Item!",HttpStatus.BAD_REQUEST);
+			}
+		}
+	
 }

@@ -1,6 +1,7 @@
 package com.codecafe.api.orders;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -82,6 +83,23 @@ public class OrderService {
 		}
 	}
 	
-	
+	public ResponseEntity<Object> deleteOrder(Integer orderid) throws Exception{
+		
+		try{	
+			Optional<Orders> returnedCustomers =repo.findById(orderid);
+			if(returnedCustomers.isEmpty()) {
+				throw new Exception("No orders found!");
+			}else {
+				repo.deleteById(orderid);
+				return new ResponseEntity<Object>("Order deleted Successully!",HttpStatus.OK);
+			
+			}
+			
+		}catch(Exception E) {
+			excp.handleAllException(E,webRequest);
+			
+			return  new ResponseEntity<Object>("Error in deleting Order!",HttpStatus.BAD_REQUEST);
+		}
+	}
 	
 }
