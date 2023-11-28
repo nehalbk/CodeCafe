@@ -68,4 +68,23 @@ public class CustomersService {
 			return  new ResponseEntity<>(customer,HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	public ResponseEntity<Object> deleteCustomer(Integer customerid) throws Exception{
+		
+		try{	
+			List<Customers> returnedCustomers =repo.findBycustomersId(customerid);
+			if(returnedCustomers.isEmpty()) {
+				throw new Exception("No customers found!");
+			}else {
+				repo.deleteById(customerid);
+				return new ResponseEntity<Object>("Customer deleted Successully!",HttpStatus.OK);
+			
+			}
+			
+		}catch(Exception E) {
+			excp.handleAllException(E,webRequest);
+			
+			return  new ResponseEntity<Object>("Error in deleting customer!",HttpStatus.BAD_REQUEST);
+		}
+	}
 }
